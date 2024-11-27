@@ -1,4 +1,5 @@
 const players = [];
+const disconnectedPlayers = [];
 const messages = [];
 const providedWords = [];
 const rounds = [];
@@ -75,4 +76,5 @@ module.exports = {
   rounds,
   currentWord,
   providedWords,
+  disconnectedPlayers,
 };
