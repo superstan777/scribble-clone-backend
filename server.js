@@ -50,6 +50,7 @@ io.on("connection", (socket) => {
         text: `${disconnectedPlayer.name} left the game`,
         type: "disconnect",
       });
+      io.emit("update game state", game);
 
       io.emit("update players", players);
       io.emit("update messages", messages);
