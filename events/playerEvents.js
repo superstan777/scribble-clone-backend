@@ -22,7 +22,7 @@ const handlePlayerEvents = (io, socket) => {
 
     newPlayer.name = playerName;
 
-    if (players.length === 0) {
+    if (game.admin === null) {
       game.admin = newPlayer.id;
     }
 

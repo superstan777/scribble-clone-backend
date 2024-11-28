@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const http = require("http");
 const { Server } = require("socket.io");
-const { players, messages } = require("./models/gameState");
+const { players, messages, game } = require("./models/gameState");
 
 const { handlePlayerEvents } = require("./events/playerEvents");
 const { handleMessagesEvents } = require("./events/messagesEvents");
@@ -38,6 +38,12 @@ io.on("connection", (socket) => {
     const index = players.findIndex((player) => player.id === socket.id);
     if (index !== -1) {
       const disconnectedPlayer = players.splice(index, 1)[0];
+
+      if (game.admin === disconnectedPlayer.id && players.length > 0) {
+        game.admin = players[0].id;
+      } else {
+        game.admin = null;
+      }
 
       messages.push({
         playerName: "",
