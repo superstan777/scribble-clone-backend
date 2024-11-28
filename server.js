@@ -22,6 +22,10 @@ const io = new Server(server, {
 app.use(cors({ origin: "*" }));
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("Socket.IO server is running!");
+});
+
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
